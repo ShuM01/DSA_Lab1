@@ -48,7 +48,7 @@ int main() {
 
     cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
-    removeByUsername(head, "Samuel");
+    removeByUsername(head, "Mayin");
     printUsers(head); // Jonathan -> Maylin -> Adam -> NULL
 
     clearList(head);
@@ -94,4 +94,41 @@ bool removeFront(User*& head) {
     return true;
 }
 
-bool removeByUsername(User*& head, const string& username
+bool removeByUsername(User*& head, const string& username) {
+    if (!head) return false;
+    if (head->username == username) return removeFront(head);
+    User* prev = head;
+    User* curr = head->next;
+    while (curr) {
+        if (curr->username == username) {
+            prev->next = curr->next;
+            delete curr;
+            return true;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    return false;
+}
+
+void clearList(User*& head) {
+    while (head) removeFront(head);
+}
+
+size_t size(User* head) {
+    size_t count = 0;
+    while (head) {
+        count++;
+        head = head->next;
+    }
+    return count;
+}
+
+void printUsers(User* head) {
+    while (head) {
+        cout << head->username << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
