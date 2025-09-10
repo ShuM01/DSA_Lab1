@@ -1,5 +1,3 @@
-// Lab 1: Singly Linked List for Username/Password storage
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -9,9 +7,9 @@ using namespace std;
 // -----------------------------
 struct User {
     string username;
-    string password; 
+    string password;
     User* next;
-    
+
     User(string u, string p) {
         username = u;
         password = p;
@@ -20,7 +18,7 @@ struct User {
 };
 
 // -----------------------------
-// Core API — implement these
+// Core API
 // -----------------------------
 bool insertUser(User*& head, const string& username, const string& password);
 User* findUser(User* head, const string& username);
@@ -43,14 +41,14 @@ int main() {
     insertUser(head, "Adam", "secure456");
     insertUser(head, "Alex", "Liang");
 
-    printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> Alex -> Null
+    printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> Alex -> NULL
 
     cout << "Size: " << size(head) << endl;
 
     cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
     removeByUsername(head, "Samuel");
-    printUsers(head); // Jonathan -> Maylin -> Adam -> Alex -> Null
+    printUsers(head); // Jonathan -> Maylin -> Adam -> Alex -> NULL
 
     clearList(head);
     printUsers(head); // NULL
@@ -77,59 +75,4 @@ bool insertUser(User*& head, const string& username, const string& password) {
 User* findUser(User* head, const string& username) {
     while (head) {
         if (head->username == username) return head;
-        head = head->next;
-    }
-    return nullptr;
-}
-
-bool authenticate(User* head, const string& username, const string& password) {
-    User* user = findUser(head, username);
-    return user && user->password == password;
-}
-
-bool removeFront(User*& head) {
-    if (!head) return false;
-    User* temp = head;
-    head = head->next;
-    delete temp;
-    return true;
-}
-
-bool removeByUsername(User*& head, const string& username) {
-    if (!head) return false;
-    if (head->username == username) return removeFront(head);
-    User* prev = head;
-    User* curr = head->next;
-    while (curr) {
-        if (curr->username == username) {
-            prev->next = curr->next;
-            delete curr;
-            return true;
-        }
-        prev = curr;
-        curr = curr->next;
-    }
-    return false;
-}
-
-void clearList(User*& head) {
-    while (head) removeFront(head);
-}
-
-size_t size(User* head) {
-    size_t count = 0;
-    while (head) {
-        count++;
-        head = head->next;
-    }
-    return count;
-}
-
-void printUsers(User* head) {
-    while (head) {
-        cout << head->username << " -> ";
-        head = head->next;
-    }
-    cout << "NULL" << endl;
-}
-
+        head = head->next
