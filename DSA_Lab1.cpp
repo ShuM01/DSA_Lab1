@@ -41,15 +41,16 @@ int main() {
     insertUser(head, "Samuel", "qwerty");
     insertUser(head, "Maylin", "letmein");
     insertUser(head, "Adam", "secure456");
+    insertUser(head, "Alex", "Liang");
 
-    printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> NULL
+    printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> Alex -> Null
 
     cout << "Size: " << size(head) << endl;
 
     cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
-    removeByUsername(head, "Mayin");
-    printUsers(head); // Jonathan -> Maylin -> Adam -> NULL
+    removeByUsername(head, "Samuel");
+    printUsers(head); // Jonathan -> Maylin -> Adam -> Alex -> Null
 
     clearList(head);
     printUsers(head); // NULL
