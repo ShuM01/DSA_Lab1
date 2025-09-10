@@ -1,4 +1,4 @@
-
+// Lab 1: Singly Linked List for Username/Password storage
 
 #include <iostream>
 #include <string>
@@ -37,18 +37,19 @@ void printUsers(User* head);
 int main() {
     User* head = nullptr;
 
-    insertUser(head, "Jonathan", "Jon");
-    insertUser(head, "Samuel", "Sam");
-    insertUser(head, "Maylin", "May");
+    insertUser(head, "Jonathan", "pass123");
+    insertUser(head, "Samuel", "qwerty");
+    insertUser(head, "Maylin", "letmein");
+    insertUser(head, "Adam", "secure456");
 
-    printUsers(head); // alice -> bob -> charlie -> NULL
+    printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> NULL
 
     cout << "Size: " << size(head) << endl;
 
-    cout << "Authenticate bob: " << (authenticate(head, "bob", "qwerty") ? "Success" : "Fail") << endl;
+    cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
-    removeByUsername(head, "bob");
-    printUsers(head); // alice -> charlie -> NULL
+    removeByUsername(head, "Samuel");
+    printUsers(head); // Jonathan -> Maylin -> Adam -> NULL
 
     clearList(head);
     printUsers(head); // NULL
@@ -93,40 +94,4 @@ bool removeFront(User*& head) {
     return true;
 }
 
-bool removeByUsername(User*& head, const string& username) {
-    if (!head) return false;
-    if (head->username == username) return removeFront(head);
-    User* prev = head;
-    User* curr = head->next;
-    while (curr) {
-        if (curr->username == username) {
-            prev->next = curr->next;
-            delete curr;
-            return true;
-        }
-        prev = curr;
-        curr = curr->next;
-    }
-    return false;
-}
-
-void clearList(User*& head) {
-    while (head) removeFront(head);
-}
-
-size_t size(User* head) {
-    size_t count = 0;
-    while (head) {
-        count++;
-        head = head->next;
-    }
-    return count;
-}
-
-void printUsers(User* head) {
-    while (head) {
-        cout << head->username << " -> ";
-        head = head->next;
-    }
-    cout << "NULL" << endl;
-}
+bool removeByUsername(User*& head, const string& username
