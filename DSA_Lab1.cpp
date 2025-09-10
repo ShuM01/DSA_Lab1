@@ -1,27 +1,76 @@
+
 #include <iostream>
+#include <string>
 using namespace std;
 
-main int
+// -----------------------------
+// Data Model
+// -----------------------------
+struct User {
+    string username;
+    string password; 
+    User* next;
+    
+    User(string u, string p) {
+        username = u;
+        password = p;
+        next = nullptr;
+    }
+};
 
+// -----------------------------
+// Core API — implement these
+// -----------------------------
+bool insertUser(User*& head, const string& username, const string& password);
+User* findUser(User* head, const string& username);
+bool authenticate(User* head, const string& username, const string& password);
+bool removeFront(User*& head);
+bool removeByUsername(User*& head, const string& username);
+void clearList(User*& head);
+size_t size(User* head);
+void printUsers(User* head);
 
-//insertUser
+// -----------------------------
+// Main Function
+// -----------------------------
+int main() {
+    User* head = nullptr;
+
+    insertUser(head, "alice", "pass123");
+    insertUser(head, "bob", "qwerty");
+    insertUser(head, "charlie", "letmein");
+
+    printUsers(head); // alice -> bob -> charlie -> NULL
+
+    cout << "Size: " << size(head) << endl;
+
+    cout << "Authenticate bob: " << (authenticate(head, "bob", "qwerty") ? "Success" : "Fail") << endl;
+
+    removeByUsername(head, "bob");
+    printUsers(head); // alice -> charlie -> NULL
+
+    clearList(head);
+    printUsers(head); // NULL
+
+    return 0;
+}
+
+// -----------------------------
+// Function Definitions
+// -----------------------------
 bool insertUser(User*& head, const string& username, const string& password) {
     if (findUser(head, username)) return false;
-
     User* newUser = new User(username, password);
     if (!head) {
         head = newUser;
         return true;
     }
-
     User* temp = head;
     while (temp->next) temp = temp->next;
     temp->next = newUser;
     return true;
 }
 
-
-//findUser
 User* findUser(User* head, const string& username) {
     while (head) {
         if (head->username == username) return head;
@@ -30,14 +79,11 @@ User* findUser(User* head, const string& username) {
     return nullptr;
 }
 
-
-//authenticate
 bool authenticate(User* head, const string& username, const string& password) {
     User* user = findUser(head, username);
     return user && user->password == password;
 }
 
-//removeFront
 bool removeFront(User*& head) {
     if (!head) return false;
     User* temp = head;
@@ -46,17 +92,11 @@ bool removeFront(User*& head) {
     return true;
 }
 
-/removeusername
 bool removeByUsername(User*& head, const string& username) {
     if (!head) return false;
-
-    if (head->username == username) {
-        return removeFront(head);
-    }
-
+    if (head->username == username) return removeFront(head);
     User* prev = head;
     User* curr = head->next;
-
     while (curr) {
         if (curr->username == username) {
             prev->next = curr->next;
@@ -69,15 +109,10 @@ bool removeByUsername(User*& head, const string& username) {
     return false;
 }
 
-//clearList
 void clearList(User*& head) {
-    while (head) {
-        removeFront(head);
-    }
+    while (head) removeFront(head);
 }
 
-
-//size
 size_t size(User* head) {
     size_t count = 0;
     while (head) {
@@ -87,8 +122,6 @@ size_t size(User* head) {
     return count;
 }
 
-
-//printUsers
 void printUsers(User* head) {
     while (head) {
         cout << head->username << " -> ";
@@ -96,4 +129,3 @@ void printUsers(User* head) {
     }
     cout << "NULL" << endl;
 }
-
