@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -36,9 +37,9 @@ void printUsers(User* head);
 int main() {
     User* head = nullptr;
 
-    insertUser(head, "alice", "pass123");
-    insertUser(head, "bob", "qwerty");
-    insertUser(head, "charlie", "letmein");
+    insertUser(head, "Jonathan", "Jon");
+    insertUser(head, "Samuel", "Sam");
+    insertUser(head, "Maylin", "May");
 
     printUsers(head); // alice -> bob -> charlie -> NULL
 
