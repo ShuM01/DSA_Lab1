@@ -48,8 +48,8 @@ int main() {
 
     cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
-    removeByUsername(head, "Samuel");
-    printUsers(head); // Jonathan -> Maylin -> Adam -> Alex -> NULL
+    removeByUsername(head, "Jonathan");
+    printUsers(head); // Samuel -> Maylin -> Adam -> Alex -> NULL
 
     clearList(head);
     printUsers(head); // NULL
