@@ -48,8 +48,8 @@ int main() {
 
     cout << "Authenticate Samuel: " << (authenticate(head, "Samuel", "qwerty") ? "Success" : "Fail") << endl;
 
-    removeByUsername(head, "Jonathan");
-    printUsers(head); // Samuel -> Maylin -> Adam -> Alex -> NULL
+    removeByUsername(head, "Samuel");
+    printUsers(head); // Jonathan -> Maylin -> Adam -> Alex -> NULL
 
     clearList(head);
     printUsers(head); // NULL
@@ -73,7 +73,6 @@ bool insertUser(User*& head, const string& username, const string& password) {
     return true;
 }
 
-//search of Jonathan
 User* findUser(User* head, const string& username) {
     while (head) {
         if (head->username == username) return head;
