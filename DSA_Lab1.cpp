@@ -127,3 +127,41 @@ int main() {
 
             case 2:
                 printUsers(head);
+                break;
+
+            case 3:
+                cout << "Enter username: ";
+                getline(cin, username);
+                cout << "Enter password: ";
+                getline(cin, password);
+                cout << (authenticate(head, username, password) ? "Authentication successful.\n" : "Authentication failed.\n");
+                break;
+
+            case 4:
+                cout << "Enter username to remove: ";
+                getline(cin, username);
+                cout << (removeByUsername(head, username) ? "User removed.\n" : "User not found.\n");
+                break;
+
+            case 5:
+                clearList(head);
+                cout << "List cleared.\n";
+                break;
+
+            case 6:
+                cout << "Size of list: " << size(head) << endl;
+                break;
+
+            case 0:
+                cout << "Exiting program.\n";
+                break;
+
+            default:
+                cout << "Invalid option. Try again.\n";
+        }
+
+    } while (choice != 0);
+
+    clearList(head); // Final cleanup
+    return 0;
+}
