@@ -73,6 +73,7 @@ bool insertUser(User*& head, const string& username, const string& password) {
     return true;
 }
 
+//search of Jonathan
 User* findUser(User* head, const string& username) {
     while (head) {
         if (head->username == username) return head;
