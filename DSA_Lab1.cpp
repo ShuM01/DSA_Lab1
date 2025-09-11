@@ -40,6 +40,7 @@ int main() {
     insertUser(head, "Maylin", "letmein");
     insertUser(head, "Adam", "secure456");
     insertUser(head, "Alex", "Liang");
+    insertUser(head, "John", "Reid");
 
     printUsers(head); // Jonathan -> Samuel -> Maylin -> Adam -> Alex -> NULL
 
