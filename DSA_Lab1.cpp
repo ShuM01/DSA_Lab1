@@ -128,7 +128,6 @@ int main() {
 
 
             case 3:
-                case 3:
                  cin.ignore(numeric_limits<streamsize>::max(), '\n'); // flush input
                 cout << "Enter username: ";
                 getline(cin, username);
