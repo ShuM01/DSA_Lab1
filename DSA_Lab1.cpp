@@ -127,6 +127,11 @@ int main() {
                 break;
 
 
+            case 2:
+                printUsers(head);
+                break;
+
+                
             case 3:
                  cin.ignore(numeric_limits<streamsize>::max(), '\n'); // flush input
                 cout << "Enter username: ";
