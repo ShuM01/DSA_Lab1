@@ -115,27 +115,28 @@ int main() {
 
         switch (choice) {
             case 1:
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // flush input
                 cout << "Enter username: ";
                 getline(cin, username);
                 cout << "Enter password: ";
                 getline(cin, password);
                 if (insertUser(head, username, password))
-                    cout << "User inserted.\n";
+                cout << "User inserted.\n";
                 else
-                    cout << "Username already exists.\n";
+                cout << "Username already exists.\n";
                 break;
 
-            case 2:
-                printUsers(head);
-                break;
 
             case 3:
+                case 3:
+                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); // flush input
                 cout << "Enter username: ";
                 getline(cin, username);
                 cout << "Enter password: ";
                 getline(cin, password);
                 cout << (authenticate(head, username, password) ? "Authentication successful.\n" : "Authentication failed.\n");
                 break;
+
 
             case 4:
                 cout << "Enter username to remove: ";
